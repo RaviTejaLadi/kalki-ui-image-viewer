@@ -2,7 +2,7 @@
 
 A flexible and feature-rich image viewer component for React applications. Built with TypeScript and styled with Tailwind CSS, it provides a seamless image viewing experience with features like zoom, rotation, fullscreen mode, and multi-image support.
 
-![React Image Viewer](./public/kalki-ui-image-viewer.png)
+![kalki-ui-image-viewer](./public/kalki-ui-image-viewer.png)
 
 ## Features
 
