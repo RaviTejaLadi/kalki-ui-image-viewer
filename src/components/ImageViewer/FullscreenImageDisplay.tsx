@@ -22,7 +22,7 @@ const FullscreenImageDisplay = () => {
         <img
           src={currentImage.src}
           alt={`Image ${currentIndex + 1}`}
-          className="max-h-[90vh] max-w-[90vw] rounded-lg object-contain"
+          className="max-h-[90vh] max-w-[90vw] rounded-lg object-cover"
           style={{
             transform: `rotate(${rotation}deg) scale(${zoom})`,
             transformOrigin: 'center',

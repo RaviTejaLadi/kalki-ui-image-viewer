@@ -1,7 +1,7 @@
 {
   "name": "kalki-ui-image-viewer",
   "description": "kalki-ui-image-viewer is a flexible and feature-rich image viewer component for React applications. Built with TypeScript and styled with Tailwind CSS, it provides a seamless image viewing experience with features like zoom, rotation, fullscreen mode, and multi-image support.",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "type": "module",
   "license": "MIT",
   "files": [
