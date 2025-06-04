@@ -3,8 +3,19 @@ import { useImageViewer } from './hooks/useImageViewer';
 import FullscreenImageDisplay from './FullscreenImageDisplay';
 import { cn } from '@/utils';
 import { fallbackImage } from './utils/fallback-image';
+import { useEffect } from 'react';
 
-export function ImageDisplay({ className = '' }: { className?: string }) {
+interface ImageDisplayProps {
+  className?: string;
+  autoChange?: boolean;
+  intervalMs?: number;
+}
+
+export function ImageDisplay({
+  className = '',
+  autoChange = false,
+  intervalMs = 3000,
+}: ImageDisplayProps) {
   const {
     currentIndex,
     rotation,
@@ -13,9 +24,20 @@ export function ImageDisplay({ className = '' }: { className?: string }) {
     isFullscreen,
     setIsFullscreen,
     showInFullScreen,
+    setCurrentIndex,
   } = useImageViewer();
 
   const currentImage = images[currentIndex];
+
+  useEffect(() => {
+    if (!autoChange || images.length <= 1) return;
+
+    const interval = setInterval(() => {
+      setCurrentIndex((prev) => (prev + 1) % images.length);
+    }, intervalMs);
+
+    return () => clearInterval(interval);
+  }, [autoChange, intervalMs, images.length, setCurrentIndex]);
 
   if (!currentImage) {
     return (
