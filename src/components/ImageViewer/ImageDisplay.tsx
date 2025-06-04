@@ -2,6 +2,7 @@ import { AlertCircle } from 'lucide-react';
 import { useImageViewer } from './hooks/useImageViewer';
 import FullscreenImageDisplay from './FullscreenImageDisplay';
 import { cn } from '@/utils';
+import { fallbackImage } from './utils/fallback-image';
 
 export function ImageDisplay({ className = '' }: { className?: string }) {
   const {
@@ -19,10 +20,13 @@ export function ImageDisplay({ className = '' }: { className?: string }) {
   if (!currentImage) {
     return (
       <div
-        className={`flex flex-col items-center justify-center h-96 bg-gray-100 rounded-lg ${className}`}
+        className={cn(
+          'flex flex-col items-center justify-center h-96 bg-gray-100 rounded-lg',
+          className
+        )}
       >
-        <AlertCircle className="w-12 h-12 text-gray-400 mb-2" />
-        <p className="text-gray-500">No image available</p>
+        <AlertCircle className="w-12 h-12 text-[--icon-color] mb-2" />
+        <p className="text-muted-foreground">No image available</p>
       </div>
     );
   }
@@ -36,7 +40,10 @@ export function ImageDisplay({ className = '' }: { className?: string }) {
   return (
     <>
       <div
-        className={`relative h-96 bg-gray-100 rounded-lg overflow-hidden ${className}`}
+        className={cn(
+          'relative h-96 bg-gray-100 rounded-lg overflow-hidden',
+          className
+        )}
       >
         <img
           src={currentImage.src}
@@ -52,8 +59,7 @@ export function ImageDisplay({ className = '' }: { className?: string }) {
           onClick={handleImageClick}
           onError={(e) => {
             const target = e.target as HTMLImageElement;
-            target.src =
-              'data:image/svg+xml;base64,PHN2ZyB3aWR0aD0iNDAwIiBoZWlnaHQ9IjMwMCIgdmlld0JveD0iMCAwIDQwMCAzMDAiIGZpbGw9Im5vbmUiIHhtbG5zPSJodHRwOi8vd3d3LnczLm9yZy8yMDAwL3N2ZyI+PHJlY3Qgd2lkdGg9IjQwMCIgaGVpZ2h0PSIzMDAiIGZpbGw9IiNGM0Y0RjYiLz48dGV4dCB4PSIyMDAiIHk9IjE1MCIgdGV4dC1hbmNob3I9Im1pZGRsZSIgZG9taW5hbnQtYmFzZWxpbmU9ImNlbnRyYWwiIGZpbGw9IiM2QjczODAiIGZvbnQtZmFtaWx5PSJBcmlhbCwgc2Fucy1zZXJpZiIgZm9udC1zaXplPSIxNiI+RXJyb3IgTG9hZGluZyBJbWFnZTwvdGV4dD48L3N2Zz4=';
+            target.src = fallbackImage;
           }}
         />
       </div>

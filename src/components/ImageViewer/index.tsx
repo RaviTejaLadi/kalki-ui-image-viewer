@@ -24,6 +24,7 @@ import {
   ImageZoomOutButton,
   ImageZoomView,
 } from './controls';
+import { useImageViewer } from './hooks/useImageViewer';
 
 interface ImageViewerProps {
   images: ImagesListTypes[];
@@ -106,6 +107,8 @@ export default Object.assign(ImageViewer, {
   ZoomOutButton: ImageZoomOutButton,
   ZoomView: ImageZoomView,
 });
+
+export { useImageViewer };
 
 export type {
   ImagesListTypes,

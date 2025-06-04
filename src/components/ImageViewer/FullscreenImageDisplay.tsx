@@ -1,6 +1,7 @@
 import CloseButton from '../CloseButton';
 import { FullscreenControls } from './FullscreenControls';
 import { useImageViewer } from './hooks/useImageViewer';
+import { fallbackImage } from './utils/fallback-image';
 
 const FullscreenImageDisplay = () => {
   const { currentIndex, rotation, zoom, images, setIsFullscreen } =
@@ -25,6 +26,10 @@ const FullscreenImageDisplay = () => {
           style={{
             transform: `rotate(${rotation}deg) scale(${zoom})`,
             transformOrigin: 'center',
+          }}
+          onError={(e) => {
+            const target = e.target as HTMLImageElement;
+            target.src = fallbackImage;
           }}
         />
       </div>
